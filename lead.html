@@ -1,0 +1,136 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Template</title>
+	<meta name="viewport" content="initial-scale=1"/>
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,500&subset=latin,cyrillic-ext' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" media="screen" href="css/screen.css" >
+	<!--[if IE]><script src="js/html5shiv.js"></script><![endif]-->
+</head>
+<body>
+<!-- begin topper  -->
+<div class="topper">
+	<div class="topper__bgs">
+		<div class="topper__bg" style="background-image: url(img/photo1.jpg)"></div>
+		<div class="topper__bg" style="background-image: url(img/photo2.jpg)"></div>
+		<div class="topper__bg" style="background-image: url(img/photo3.jpg)"></div>
+	</div>
+	<div class="topper__in">
+		<div class="logo">
+			
+		</div>
+		<div class="countries">
+			<div class="country">
+				<div class="country__name">Украина</div>
+				<ul class="country__drop">
+					<li><a href="#">Киев</a></li>
+				</ul>
+			</div>
+			<div class="country">
+				<div class="country__name">Россия</div>
+				<ul class="country__drop">
+					<li><a href="#">Москва</a></li>
+					<li><a href="#">Питер</a></li>
+					<li><a href="#">Екатеринбург</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end topper -->
+<script src="http://api-maps.yandex.ru/1.1/index.xml?key=ANpUFEkBAAAAf7jmJwMAHGZHrcKNDsbEqEVjEUtCmufxQMwAAAAAAAAAAAAvVrubVT4btztbduoIgTLAeFILaQ==" type="text/javascript"></script>
+<script>
+	YMaps.jQuery(function () {
+                   // Создание экземпляра карты и его привязка к созданному контейнеру
+                   var map = new YMaps.Map(YMaps.jQuery("#YMapsID")[0]);
+
+                   // Установка для карты ее центра и масштаба
+                   map.setCenter(new YMaps.GeoPoint(30.62744,50.75441), 5);
+
+                   // Создания стиля для балуна
+                   var style = new YMaps.Style();
+                   // style.balloonStyle = {template: new YMaps.LayoutTemplate(SampleBalloonLayout)};
+                   style.iconStyle = new YMaps.IconStyle();
+                   style.iconStyle.href = "img/icons/baloon.png";
+                   style.iconStyle.size = new YMaps.Point(79, 79);
+                   style.iconStyle.offset = new YMaps.Point(-55, -30);
+
+                   // style.iconStyle.shadow = new YMaps.IconShadowStyle();
+                   // style.iconStyle.shadow.href = "img/icons/baloon.png";
+                   // style.iconStyle.shadow.size = new YMaps.Point(90, 100);
+                   // style.iconStyle.shadow.offset = new YMaps.Point(-61, -30);
+
+
+
+                   // Создание метки с созданным стилем и добавление ее на карту
+                   var placemark = new YMaps.Placemark(new YMaps.GeoPoint(37.62744,55.75441), {style: style});
+                   placemark.description = "Здесь можно разместить описание метки.";
+                   map.addOverlay(placemark);
+                   
+                   map.addControl(new YMaps.TypeControl());
+                   map.addControl(new YMaps.ToolBar());
+                   map.addControl(new YMaps.Zoom());
+                   map.addControl(new YMaps.MiniMap());
+                   map.addControl(new YMaps.ScaleLine());
+                   map.addControl(new YMaps.SearchControl());
+               });
+</script>
+<!-- begin map  -->
+<div class="map">
+	<div id="YMapsID" style="width:100%;height:645px"></div>
+</div>
+<!-- end map -->
+
+<!-- begin about  -->
+<div class="about"><div class="about__in">
+	<p><strong>Волконский</strong> — первая в Украине и России сеть традиционных пекарен. Создатели и владельцы — супруги Стефани и Александр Гарез.</p>
+</div></div>
+<!-- end about -->
+<!-- begin goal  -->
+<div class="goal"><div class="goal__in">
+	
+	<h2>Наша цель — дарить людям радость.</h2>
+	<div class="cols">
+		<div class="col">
+			<dl>
+				<dt>Восстанавливаем рецепты 
+	из старинных кулинарных книг</dt>
+				<dd>Мы восстанавливаем рецепты из старинных кулинарных книг и используем натуральные ингредиенты. Мы соединяем традиции с передовыми технологиями. В наших булочных есть 
+				и настоящий французский круассан, и украинская паляница,и русские пирожки, и польский перекладанец, и советская трубочка с кремом – мы экспериментируем постоянно, собираем лучшие рецепты всех времен, чтобы удивляться и удивлять вас! </dd>
+				<dt>Мы не используем добавки</dt>
+				<dd>Нам нравится нести культуру еды и быть в своем роде первопроходцами. Мы не используем добавки, улучшители, консерванты. Выпуская высококачественную продукцию, мы жертвуем сроками хранения: хлеба и выпечка хранятся до 12 часов, а кондитерские изделия – до 48 часов. <br>
+			Будьте уверены в качестве на 100%.</dd>
+			</dl>
+		</div>	
+		<div class="col">
+			<dl>
+				<dt>Мы уделяем внимание тем, 
+	кому нужна помощь.</dt>
+				<dd>При этом значительная часть производства традиционно изготавливается вручную, от 
+	формовки хлеба до глазировки эклеров. Пожалуй, это и есть наши секреты качества. Мы уделяем внимание тем, кому нужна помощь. Каждый меcяц отправляем в детские дома и дома престарелых хлеб и выпечку. В Киеве проводим бесплатные мастер - классы для деток. <br>
+	В Москве работает благотворительный учебный центр «Ковчег» для детей с особенностями развития. Мы делаем многое, чтобы дать ребятам ремесло, которое будет полезным в жизни.  Хороший хлеб не солжет. Он расскажет все о качестве, ингредиентах и приготовлении. Быть пекарем – значит создавать маленькое чудо: соединять воду, соль, муку так, чтобы зазвучала симфония вкуса.  </dd>
+			</dl>
+		</div>
+	</div>
+
+	<blockquote><p>Хороший хлеб не солжет. Он расскажет все о качестве, ингредиентах и приготовлении. </p></blockquote>
+</div></div>
+<!-- end goal -->
+
+<!-- begin card  -->
+<div class="card"><div class="card__in">
+	<h2>Подарочная карта</h2>
+	<p><strong>Подарочная карта «Волконский»</strong> — отличный подарок<br> родственникам, друзьям и коллегам! Купить карты разного номинала<br> можно во всех наших кафе и булочных.</p>
+</div></div>
+<!-- end card -->
+<!-- begin footer  -->
+<div class="footer"><div class="footer__in">
+	<p class="footer__copy">Copyright 2014  “Торговый Дом Волконский” | Все права защищены.</p>
+	<a href="#" class="footer__madeby">Made by <span>Pinto</span></a>
+</div></div>
+<!-- end footer -->
+<!-- load scripts -->
+<script src="js/lib/head.js" data-headjs-load="js/init.js"></script>
+</body>
+</html>

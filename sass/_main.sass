@@ -1,5 +1,53 @@
 // Normally mainpage styles
+body
+	background: #F8F8F8 
+.header
+	height: 484px 
+%in
+	width: 950px 
+	margin: 0 auto 
+.footer
+	height: 60px 
+	background: #342B26
+	font-size: 13px 
+	+clr
+	.footer__copy
+		float: left
+		opacity: .5
+		color: #FFFFFF
+		line-height: 60px   
+	.footer__madeby
+		float: right
+		opacity: 0.5 
+		color: #fff
+		text-decoration: none
+		line-height: 60px
+		height: 60px  
+		span
+			display: inline-block
+			+hide-text
+			vertical-align: middle
+			+s(pinto)
+	.footer__in
+		@extend %in
 
+.out
+	@extend %in
+	.l
+		+clr
+		.l-col1
+			float: left
+			width: 608px 
+		.l-col2
+			float: right
+			width: 298px 
+
+
+.entry
+	background: #fff
+	border: 1px solid #D8D8D8  
+	margin-top: -1px 
+	
 
 
 

@@ -18,9 +18,64 @@ ul, ol { list-style-type: none; }
 @media only screen and (min-device-width: 320px) and (max-device-width: 480px) { * { -webkit-text-size-adjust: none; } }
 table { border-spacing: 0; border-collapse: collapse; width: 100%; }
 
-body { font-family: Arial, sans-serif; font-size: 12px; line-height: 1.4; }
+@font-face { font-family: bold; src: url("fonts/gothaprobol-webfont.eot"); src: url("fonts/gothaprobol-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/gothaprobol-webfont.woff") format("woff"), url("fonts/gothaprobol-webfont.ttf") format("truetype"); font-weight: normal; font-style: normal; }
 
-.l { *zoom: 1; }
-.l:after { content: " "; display: table; clear: both; }
-.l .l-col1 { float: left; width: 20%; }
-.l .l-col2 { float: right; width: 70%; }
+@font-face { font-family: reg; src: url("fonts/gothaproreg-webfont.eot"); src: url("fonts/gothaproreg-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/gothaproreg-webfont.woff") format("woff"), url("fonts/gothaproreg-webfont.ttf") format("truetype"); font-weight: normal; font-style: normal; }
+
+@font-face { font-family: med; src: url("fonts/gothapromed-webfont.eot"); src: url("fonts/gothapromed-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/gothapromed-webfont.woff") format("woff"), url("fonts/gothapromed-webfont.ttf") format("truetype"); font-weight: normal; font-style: normal; }
+
+body { font-family: Arial, sans-serif; font-size: 12px; line-height: 1.4; font-family: reg, sans-serif; }
+
+body { background: #f8f8f8; }
+
+.header { height: 484px; }
+
+.footer .footer__in, .out, .topper .topper__in, .about .about__in, .card .card__in, .goal .goal__in { width: 950px; margin: 0 auto; }
+
+.footer { height: 60px; background: #342b26; font-size: 13px; *zoom: 1; }
+.footer:after { content: " "; display: table; clear: both; }
+.footer .footer__copy { float: left; opacity: 0.5; color: white; line-height: 60px; }
+.footer .footer__madeby { float: right; opacity: 0.5; color: white; text-decoration: none; line-height: 60px; height: 60px; }
+.footer .footer__madeby span { display: inline-block; font: 0/0 a; text-shadow: none; color: transparent; vertical-align: middle; background: url('../img/icons-sb15d9d2d84.png') 0 -447px no-repeat; width: 68px; height: 23px; }
+
+.out .l { *zoom: 1; }
+.out .l:after { content: " "; display: table; clear: both; }
+.out .l .l-col1 { float: left; width: 608px; }
+.out .l .l-col2 { float: right; width: 298px; }
+
+.entry { background: white; border: 1px solid #d8d8d8; margin-top: -1px; }
+
+.topper .topper__bgs, .topper .topper__bg { position: absolute; top: 0; bottom: 0; left: 0; right: 0; }
+.topper .topper__bgs .topper__bg, .topper .topper__bg .topper__bg { -webkit-background-size: cover; -o-background-size: cover; background-size: cover; }
+.topper .topper__in { height: 100vh; position: relative; text-align: center; }
+.topper .logo { margin-top: 110px; font: 0/0 a; text-shadow: none; color: transparent; display: inline-block; background: url('../img/icons-sb15d9d2d84.png') 0 0 no-repeat; width: 353px; height: 346px; }
+
+.countries { padding-top: 70px; font-family: Roboto, sans-serif; }
+.countries .country { display: inline-block; margin: 0 80px; position: relative; width: 160px; text-align: center; }
+.countries .country.is-active .country__drop { display: block; opacity: 1; }
+.countries .country__name { display: inline-block; color: white; text-transform: uppercase; font-size: 18px; text-decoration: none; cursor: pointer; }
+.countries .country__drop { position: absolute; top: 37px; background: white; left: 0px; list-style: none; font-weight: 500; font-size: 13px; color: #222222; border-radius: 8px; width: 160px; display: none; opacity: 0; -webkit-transition: all 0.2s linear; -moz-transition: all 0.2s linear; -o-transition: all 0.2s linear; transition: all 0.2s linear; }
+.countries .country__drop:before { position: absolute; content: " "; width: 14px; height: 14px; background: white; left: 50%; top: -5px; margin-left: -6px; -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); -ms-transform: rotate(45deg); -o-transform: rotate(45deg); transform: rotate(45deg); }
+.countries .country__drop a { display: block; color: #222222; text-transform: uppercase; text-align: center; height: 60px; text-decoration: none; line-height: 60px; position: relative; z-index: 20; }
+.countries .country__drop a:hover { background: #eeeeee; border-radius: 8px; }
+
+.about { background: url(../img/seo.jpg) no-repeat 50% 0; -webkit-background-size: cover; -o-background-size: cover; background-size: cover; height: 396px; text-align: center; color: white; font-size: 30px; color: white; line-height: 35px; font-family: reg, sans-serif; }
+.about strong { font-family: bold, sans-serif; font-weight: normal; }
+.about p { padding-top: 145px; }
+
+.card { height: 415px; background: url(../img/seo.jpg) no-repeat 50% 0; -webkit-background-size: cover; -o-background-size: cover; background-size: cover; height: 396px; text-align: center; color: white; font-size: 30px; color: white; line-height: 35px; font-family: reg, sans-serif; }
+.card strong, .card h2 { font-family: bold, sans-serif; font-weight: normal; }
+.card h2 { font-family: med, sans-serif; padding-top: 129px; font-size: 36px; font-weight: normal; color: white; margin-bottom: 20px; }
+.card p { font-size: 24px; line-height: 29px; }
+
+.goal { background: #feffef; }
+.goal .goal__in { padding: 46px 0 30px 0; }
+.goal .col { float: left; width: 420px; }
+.goal .col + .col { width: 440px; float: right; }
+.goal h2, .goal blockquote { border-bottom: 3px solid #f1e1b2; border-top: 3px solid #f1e1b2; position: relative; font-size: 30px; color: #232323; padding: 24px 0; text-align: center; font-weight: normal; font-family: reg, sans-serif; margin-bottom: 27px; }
+.goal h2:before, .goal blockquote:before { width: 118px; content: " "; position: absolute; left: 50%; top: -5px; height: 10px; background: #feffef; margin-left: -59px; }
+.goal h2:after, .goal blockquote:after { position: absolute; left: 50%; margin-left: -5px; top: -16px; background: url('../img/icons-sb15d9d2d84.png') 0 -480px no-repeat; width: 32px; height: 25px; content: " "; }
+.goal .cols { *zoom: 1; margin-bottom: 15px; }
+.goal .cols:after { content: " "; display: table; clear: both; }
+.goal .cols dt { font-size: 24px; font-family: med, sans-serif; line-height: 29px; margin-bottom: 17px; }
+.goal .cols dd { font-size: 18px; margin-bottom: 25px; font-family: Georgia, serif; color: #232323; line-height: 23px; }

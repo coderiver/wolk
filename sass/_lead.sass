@@ -1,0 +1,181 @@
+
+.topper
+	.topper__bgs,.topper__bg
+		position: absolute
+		top: 0
+		bottom: 0
+		left: 0
+		right: 0
+		.topper__bg
+			-webkit-background-size: cover 
+			-o-background-size: cover 
+			background-size: cover 
+		
+
+	.topper__in
+		@extend %in
+		height: 100vh 
+		position: relative
+		text-align: center
+	.logo
+		margin-top: 110px
+		+hide-text
+		display: inline-block
+		+s(logo)
+.countries
+	padding-top: 70px 
+	font-family: Roboto,sans-serif 
+	.country
+		display: inline-block
+		margin: 0 80px
+		position: relative
+		width: 160px 
+		text-align: center
+		&.is-active
+			.country__drop
+				display: block
+				opacity: 1 
+	.country__name
+		display: inline-block
+		color: #fff 
+		text-transform: uppercase
+		font-size: 18px 
+		text-decoration: none
+		cursor: pointer
+	
+	.country__drop
+		position: absolute
+		top: 37px 
+		background: #fff
+		left: 0px  
+		list-style: none
+		font-weight: 500
+		font-size: 13px  
+		color: #222222
+		border-radius: 8px
+		width: 160px 
+		display: none
+		opacity: 0
+		+transition(all .2s linear) 
+		&:before
+			position: absolute
+			content: ' '
+			width: 14px 
+			height: 14px 
+			background: #fff 
+			left: 50%
+			top: -5px  
+			margin-left: -6px 
+			+transform(rotate(45deg))
+		a
+			display: block
+			color: #222 
+			text-transform: uppercase
+			text-align: center
+			height: 60px 
+			text-decoration: none
+			line-height: 60px 
+			position: relative
+			z-index: 20 
+			&:hover
+				background: #eee 
+				border-radius: 8px
+.about
+	background: url(../img/seo.jpg) no-repeat 50% 0
+	-webkit-background-size: cover 
+	-o-background-size: cover 
+	background-size: cover  
+	height: 396px 
+	text-align: center
+	color: #fff 
+	font-size: 30px 
+	color: #fff 
+	line-height: 35px
+	+reg
+	strong
+		+bold
+	.about__in
+		@extend %in
+	p
+		padding-top: 145px 
+.card
+	height: 415px 
+	background: url(../img/seo.jpg) no-repeat 50% 0
+	-webkit-background-size: cover 
+	-o-background-size: cover 
+	background-size: cover  
+	height: 396px 
+	text-align: center
+	color: #fff 
+	font-size: 30px 
+	color: #fff 
+	line-height: 35px
+	+reg
+	strong,h2
+		+bold
+	h2
+		+med
+		padding-top: 129px 
+		font-size: 36px 
+		font-weight: normal
+		color: #fff
+		margin-bottom: 20px  
+	p
+		font-size: 24px 
+		line-height: 29px 
+	.card__in
+		@extend %in
+
+
+.goal
+	background: #FEFFEF
+	.goal__in
+		@extend %in
+		padding: 46px 0 30px 0 
+	.col
+		float: left
+		width: 420px  
+	.col+.col
+		width: 440px 
+		float: right
+	h2,blockquote
+		border-bottom: 3px solid #F1E1B2 
+		border-top: 3px solid #F1E1B2 
+		position: relative
+		font-size: 30px 
+		color: #232323 
+		padding: 24px 0
+		text-align: center 
+		font-weight: normal
+		+reg
+		margin-bottom: 27px 
+		&:before
+			width: 118px 
+			content: ' '
+			position: absolute
+			left: 50%
+			top: -5px  
+			height: 10px 
+			background: #FEFFEF 
+			margin-left: -59px 
+		&:after
+			position: absolute
+			left: 50%
+			margin-left: -5px  
+			top: -16px 
+			+s(q)
+			content: ' '
+	.cols
+		+clr
+		margin-bottom: 15px 
+		dt
+			font-size: 24px 
+			+med
+			line-height: 29px
+			margin-bottom: 17px 
+		dd
+			font-size: 18px 
+			margin-bottom: 25px 
+			font-family: Georgia,serif
+			color: #232323
+			line-height: 23px   
