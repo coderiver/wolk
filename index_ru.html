@@ -25,21 +25,22 @@
 			<a href="index_ua.html">ua</a>
 			<a href="index.html"  class="is-active">en</a>
 		</div>
-		<div class="logo is-english">
+		<div class="logo">
 			
 		</div>
 		<div class="countries">
 			<div class="country">
-				<div class="country__name">Ukraine</div>
+				<div class="country__name">Украина</div>
 				<ul class="country__drop">
-					<li><a href="city.html">Kyiv</a></li>
+					<li><a href="city.html">Киев</a></li>
 				</ul>
 			</div>
 			<div class="country">
-				<div class="country__name">Russia</div>
+				<div class="country__name">Россия</div>
 				<ul class="country__drop">
-					<li><a href="city.html">Moscow</a></li>
-					<li><a href="city.html">Peterburg</a></li>
+					<li><a href="city.html">Москва</a></li>
+					<li><a href="city.html">Питер</a></li>
+					<li><a href="city.html">Екатеринбург</a></li>
 				</ul>
 			</div>
 		</div>
@@ -48,7 +49,7 @@
 <!-- end topper -->
  <!--<script src="http://api-maps.yandex.ru/1.1/index.xml?key=AHNzAFQBAAAA-pSQVwMAuLCyTUJuIi7d3_j6pRHwTMUpr7YAAAAAAAAAAAB4sEITzG74kt8W7jeJWytek0VnIg=="
 	type="text/javascript"></script> -->
-<script src="http://api-maps.yandex.ru/2.1/?lang=en_US"></script>
+<script src="http://api-maps.yandex.ru/2.1/?lang=ru_RU"></script>
 <script>
 ymaps.ready(init);
 
@@ -57,7 +58,46 @@ function init (){
     center: [53.75441, 30.62744],
     zoom: 5
   });
+	myPlacemark0 = new ymaps.Placemark([55.752577,37.632134], { 
+        balloonContent: '<div class="ballon"><h3>Какое-то описание</h3><p>lorem ipsum</p></div>' // сдесь содержимое балуна в формате html, все стили в css
+        }, {
+        iconLayout: 'default#image',
+        iconImageHref: 'img/icons/baloon.png',
+        iconImageSize: [68, 81],
+        iconImageOffset: [-34, -80],
+        balloonContentSize: [270, 99] // размер нашего кастомного балуна в пикселях
 
+        });
+	myPlacemark1 = new ymaps.Placemark([59.57,30.19], { 
+        balloonContent: '<div class="ballon"><h3>1Какое-то описание</h3><p>lorem ipsum</p></div>' // сдесь содержимое балуна в формате html, все стили в css
+        }, {
+        iconLayout: 'default#image',
+        iconImageHref: 'img/icons/baloon.png',
+        iconImageSize: [68, 81],
+        iconImageOffset: [-34, -80],
+        balloonContentSize: [270, 99] // размер нашего кастомного балуна в пикселях
+
+        });
+	myPlacemark2 = new ymaps.Placemark([50.4546600,30.5238000], { 
+        balloonContent: '<div class="ballon"><h3>1Какое-то описание</h3><p>lorem ipsum</p></div>' // сдесь содержимое балуна в формате html, все стили в css
+        }, {
+        iconLayout: 'default#image',
+        iconImageHref: 'img/icons/baloon.png',
+        iconImageSize: [68, 81],
+        iconImageOffset: [-34, -80],
+        balloonContentSize: [270, 99] // размер нашего кастомного балуна в пикселях
+
+        });
+
+
+    // myMap.geoObjects
+    //     .add(myPlacemark0)
+    //     .add(myPlacemark1)
+    //     .add(myPlacemark2);
+
+        
+    // for(i=0;i<arr.length;i++){
+    // 	console.log(arr);
     arr = [
             	{a:'Петербург, Невский пр., 15',
             	 b:"«Талион Империал Отель»",
@@ -541,6 +581,10 @@ i++;
 				myMap.geoObjects.add(myPlacemark);
 
             });
+    	
+
+
+
    	// }
 }
 </script>
@@ -552,49 +596,49 @@ i++;
 
 <!-- begin about  -->
 <div class="about"><div class="about__in">
-	<p><strong>Volkonskyi </strong> - the first in Ukraine and Russia, a network of traditional bakeries. Creators and owners - wife Stephanie and Alexander Garez. </p>
+	<p><strong>Волконский</strong> — первая в Украине и России сеть традиционных пекарен. Создатели и владельцы — супруги Стефани и Александр Гарез.</p>
 </div></div>
 <!-- end about -->
 <!-- begin goal  -->
 <div class="goal"><div class="goal__in">
 	
-	<h2>Our goal - to make people happy.</h2>
+	<h2>Наша цель — дарить людям радость.</h2>
 	<div class="cols">
 		<div class="col">
 			<dl>
-				<dt>Restore recipes 
-vintage cookbooks</dt>
-				<dd> We restore vintage recipes from cookbooks and use natural ingredients. We combine tradition with cutting-edge technology. Our bakery is 
-and a real French croissant and Palyanitsa Ukrainian, Russian and pies, and perekladanets Polish and Soviet tube with cream - we are experimenting constantly collect the best recipes of all time, to wonder and amaze you! </dd>
-				<dt>We do not use additives</dt>
-				<dd> We like to carry the food and culture of its kind to be pioneers. We do not use additives, enhancers, preservatives. High quality products, we sacrifice shelf life: bread and pastries are stored up to 12 hours, and confectionery products - up to 48 hours. <br> 
-Be confident in the quality 100%. </dd>
+				<dt>Восстанавливаем рецепты 
+	из старинных кулинарных книг</dt>
+				<dd>Мы восстанавливаем рецепты из старинных кулинарных книг и используем натуральные ингредиенты. Мы соединяем традиции с передовыми технологиями. В наших булочных есть 
+				и настоящий французский круассан, и украинская паляница,и русские пирожки, и польский перекладанец, и советская трубочка с кремом – мы экспериментируем постоянно, собираем лучшие рецепты всех времен, чтобы удивляться и удивлять вас! </dd>
+				<dt>Мы не используем добавки</dt>
+				<dd>Нам нравится нести культуру еды и быть в своем роде первопроходцами. Мы не используем добавки, улучшители, консерванты. Выпуская высококачественную продукцию, мы жертвуем сроками хранения: хлеба и выпечка хранятся до 12 часов, а кондитерские изделия – до 48 часов. <br>
+			Будьте уверены в качестве на 100%.</dd>
 			</dl>
 		</div>	
 		<div class="col">
 			<dl>
-				<dt>We pay attention to the fact 
-who need help</dt>
-				<dd>A significant part of the production is traditionally made by hand, from the 
-shaping bread to glaze eclairs. Perhaps it is the quality of our secrets. . Each mecyats send to orphanages and homes for the elderly bread and pastries. In Kiev offer free master - classes for kids. <br> 
-In Moscow, a charity training center "Ark" for children with special needs. We do a lot to give the guys a craft that will be useful in life. Good bread is not lied. He'll tell you all about the quality of the ingredients and preparation. Being a baker - then create a small miracle: to connect water, salt, flour, so that sounded a symphony of taste.</dd>
+				<dt>Мы уделяем внимание тем, 
+	кому нужна помощь.</dt>
+				<dd>При этом значительная часть производства традиционно изготавливается вручную, от 
+	формовки хлеба до глазировки эклеров. Пожалуй, это и есть наши секреты качества.<!--  Мы уделяем внимание тем, кому нужна помощь -->. Каждый меcяц отправляем в детские дома и дома престарелых хлеб и выпечку. В Киеве проводим бесплатные мастер - классы для деток. <br>
+	В Москве работает благотворительный учебный центр «Ковчег» для детей с особенностями развития. Мы делаем многое, чтобы дать ребятам ремесло, которое будет полезным в жизни.  Хороший хлеб не солжет. Он расскажет все о качестве, ингредиентах и приготовлении. Быть пекарем – значит создавать маленькое чудо: соединять воду, соль, муку так, чтобы зазвучала симфония вкуса.  </dd>
 			</dl>
 		</div>
 	</div>
 
-	<blockquote><p> Good bread not lied. He'll tell you all about the quality of the ingredients and preparation </p></blockquote>
+	<blockquote><p>Хороший хлеб не солжет. Он расскажет все о качестве, ингредиентах и приготовлении. </p></blockquote>
 </div></div>
 <!-- end goal -->
 
 <!-- begin card  -->
 <div class="card"><div class="card__in">
-	<h2>Gift Card</h2>
-	<p><strong> Gift card "Volkonskyi» </strong> - a great gift <br> relatives, friends and colleagues! Buy cards of different values ​​<br> possible in all of our cafes and bakeries</p>
+	<h2>Подарочная карта</h2>
+	<p><strong>Подарочная карта «Волконский»</strong> — отличный подарок<br> родственникам, друзьям и коллегам! Купить карты разного номинала<br> можно во всех наших кафе и булочных.</p>
 </div></div>
 <!-- end card -->
 <!-- begin footer  -->
 <div class="footer"><div class="footer__in">
-	<p class="footer__copy">Copyright 2014   Brasslink Limited |  All rights reserved.</p>
+	<p class="footer__copy">Copyright 2014   Brasslink Limited | Все права защищены.</p>
 	<a href="#" class="footer__madeby">Made by <span>Pinto</span></a>
 </div></div>
 <!-- end footer -->

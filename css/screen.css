@@ -116,7 +116,8 @@ body { background: #f8f8f8; }
 .topper .topper__bgs, .topper .topper__bg { position: absolute; top: 0; bottom: 0; left: 0; right: 0; }
 .topper .topper__bgs .topper__bg, .topper .topper__bg .topper__bg { -webkit-background-size: cover; -o-background-size: cover; background-size: cover; }
 .topper .topper__in { height: 100vh; position: relative; text-align: center; z-index: 200; }
-.topper .logo { margin-top: 110px; font: 0/0 a; text-shadow: none; color: transparent; display: inline-block; background: url('../img/icons-s123689e24e.png') 0 0 no-repeat; width: 360px; height: 386px; margin-bottom: -30px; }
+.topper .logo { margin-top: 110px; font: 0/0 a; text-shadow: none; color: transparent; display: inline-block; background: url('../img/icons-s123689e24e.png') 0 -396px no-repeat; width: 353px; height: 346px; }
+.topper .logo.is-english { background: url('../img/icons-s123689e24e.png') 0 0 no-repeat; width: 360px; height: 386px; margin-bottom: -30px; }
 .topper .lang { position: absolute; top: 80px; right: 0; font-size: 15px; text-transform: uppercase; }
 .topper .lang a { text-decoration: none; color: #a1a0a0; margin-left: 26px; }
 .topper .lang a.is-active { color: white; }
