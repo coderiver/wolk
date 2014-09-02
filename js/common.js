@@ -6,5 +6,7 @@ head.ready(function() {
 	$('.country').click(function(event) {
 		$(this).toggleClass('is-active');
 	});
-	console.log($('body').html());
+	$('.select select').change(function(event) {
+		$(this).prev().text($(this).val());
+	});
 });

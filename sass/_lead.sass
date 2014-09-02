@@ -17,11 +17,29 @@
 		height: 100vh 
 		position: relative
 		text-align: center
+		z-index: 200 
 	.logo
 		margin-top: 110px
 		+hide-text
 		display: inline-block
-		+s(logo)
+		
+
+		// +s(logo)
+		+s(logo_en)
+		margin-bottom: -30px 
+	.lang
+		position: absolute
+		top: 80px 
+		right: 0
+		font-size: 15px  
+		text-transform: uppercase
+		a
+			text-decoration: none
+			color: #A1A0A0
+			margin-left: 26px 
+			&.is-active
+				color: #fff 
+				margin-left: 15px 
 .countries
 	padding-top: 70px 
 	font-family: Roboto,sans-serif 
@@ -100,7 +118,7 @@
 		padding-top: 145px 
 .card
 	height: 415px 
-	background: url(../img/seo.jpg) no-repeat 50% 0
+	background: url(../img/gift-cards.jpg) no-repeat 50% 0
 	-webkit-background-size: cover 
 	-o-background-size: cover 
 	background-size: cover  
