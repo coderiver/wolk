@@ -74,7 +74,7 @@
 
                    // Создание метки с созданным стилем и добавление ее на карту
                    var placemark = new YMaps.Placemark(new YMaps.GeoPoint(37.62744,55.75441), {style: style});
-                   placemark.description = "Здесь можно разместить описание метки.";
+                   placemark.description = "<div style='width:100px'><b>Здесь</b> можно разместить описание метки.</div>";
                    map.addOverlay(placemark);
                    
                    map.addControl(new YMaps.TypeControl());
