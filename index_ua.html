@@ -46,509 +46,145 @@
 	</div>
 </div>
 <!-- end topper -->
- <!--<script src="http://api-maps.yandex.ru/1.1/index.xml?key=AHNzAFQBAAAA-pSQVwMAuLCyTUJuIi7d3_j6pRHwTMUpr7YAAAAAAAAAAAB4sEITzG74kt8W7jeJWytek0VnIg=="
-	type="text/javascript"></script> -->
-<script src="http://api-maps.yandex.ru/2.1/?lang=uk_UA"></script>
+<!-- load scripts -->
+<script src="js/lib/head.js" data-headjs-load="js/init.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
 <script>
-ymaps.ready(init);
+	function initialize() {
+	  var myLatlng = new google.maps.LatLng(53.75441, 30.62744);
+	  var mapOptions = {
+	    zoom: 5,
+	    center: myLatlng,
+	    disableDefaultUI: true,
+	    scrollwheel: false,
+	    zoomControl: true,
+	    zoomControlOptions: {
+	      style: google.maps.ZoomControlStyle.DEFAULT,
+	      position: google.maps.ControlPosition.RIGHT_TOP
+	    }
+	  }
 
-function init (){
-	var myMap = new ymaps.Map("YMapsID", {
-    center: [53.75441, 30.62744],
-    zoom: 5
-  });
+	  var geocoder = new google.maps.Geocoder();
+	  var map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-    arr = [
-            	{a:'Петербург, Невский пр., 15',
-            	 b:"«Талион Империал Отель»",
-            	 c:'м. Невский Проспект, Адмиралтейская, +7 981 728 23 36'},
-            	{a:'Петербург, Каменноостровский пр., 8',
-            	 b:"Каменноостровский пр., 8",
-            	 c:'м. Горьковская, Петроградская, +7 911 297 83 26'},
-            	 {a:'Петербург, Выборгское ш., 17/1',
-            	 b:"Выборгское ш., 17/1",
-            	 c:'м. Проспект Просвещения, Озерки, +7 911 083 98 77'},
-            	 {a:'г. Пушкин, Екатерининский парк',
-            	 b:"комплекс «Адмиралтейство»",
-            	 c:'комплекс «Адмиралтейство», +7 931 361 36 67'},
-            	 {a:'Петербург, Большая Конюшенная ул., 21/23',
-            	 b:"«ДЛТ» 2 этаж",
-            	 c:'м. Невский Проспект, Адмиралтейская, +7 911 024 56 07'},
+	  arr = [
+			// Питер
+			{a:'Петербург, Невский пр., 15',
+			 b:'«Талион Империал Отель»',
+			 c:'м. Невский Проспект, Адмиралтейская, +7 981 728 23 36'},
+			{a:'Петербург, Каменноостровский пр., 8',
+			 b:'Каменноостровский пр., 8',
+			 c:'м. Горьковская, Петроградская, +7 911 297 83 26'},
+			{a:'Петербург, Выборгское ш., 17/1',
+			 b:'Выборгское ш., 17/1',
+			 c:'м. Проспект Просвещения, Озерки, +7 911 083 98 77'},
+			{a:'г. Пушкин, Екатерининский парк',
+			 b:'комплекс «Адмиралтейство»',
+			 c:'комплекс «Адмиралтейство», +7 931 361 36 67'},
+			{a:'Петербург, Большая Конюшенная ул., 21/23',
+			 b:'«ДЛТ» 2 этаж',
+			 c:'м. Невский Проспект, Адмиралтейская, +7 911 024 56 07'},
+			// Киев
+			{a:'Киев, Крещатик ул., 15',
+			 b:'«Пассаж»',
+			 c:'м. Крещатик, Майдан Незалежности, +380 44 393 78 34'},
+			{a:'Киев, Героев Сталинграда пр., 10',
+			 b:'Гольф центр, ',
+			 c:'м. Оболонь, +380 44 428 36 40'},
+			{a:'Киев, Саксаганского ул., 24',
+			 b:'«Пассаж»',
+			 c:'м. Республиканский стадион, +380 44 289 55 82'},
+			{a:'Киев, Шевченко б-р, 5-7',
+			 b:'«Премьер Палас Отель»',
+			 c:'м. Театральная, Льва Толстого, +380 44 244 13 60'},
+			{a:'Киев, Верхний вал ул., 22',
+			 b:'Верхний вал ул., 22',
+			 c:'м. Контрактовая площадь, +380 44 200 03 24'},
+			{a:'Киев, Льва Толстого ул., 1',
+			 b:'Льва Толстого ул., 1',
+			 c:'м. Площадь Льва Толстого, +380 44 235 95 31'},
+			{a:'Киев, Богдана Хмельницкого ул., 52а',
+			 b:'Богдана Хмельницкого ул., 52а',
+			 c:'м. Университет, Золотые ворота, +380 44 393 34 83'},
+			// Москва
+			{a:'Москва, Большая Садовая ул., 2/46, стр. 1',
+			 b:'Большая Садовая ул., 2/46, стр. 1',
+			 c:'м. Маяковская, +7 495 699 36 20'},
+			{a:'Москва, Маросейка ул., 4/2, стр. 1',
+			 b:'м. Китай-город',
+			 c:'м. Китай-город, +7 903 185 32 91'},
+			{a:'Москва, Большая Садовая ул., 2/46, стр. 1',
+			 b:'Большая Садовая ул., 2/46, стр. 1',
+			 c:'м. Маяковская, +7 495 699 36 20'},
+			{a:'Москва, Сретенка ул., 27, стр. 1',
+			 b:'м. Сухаревская',
+			 c:'м. Сухаревская, +7 495 607 19 80'},
+			{a:'Москва, Большая Якиманка ул., 19',
+			 b:'м. Полянка',
+			 c:'м. Полянка, +7 905 553 25 54'},
+			{a:'Москва, Цветной б-р, 15',
+			 b:'ТЦ «Цветной» 5 этаж',
+			 c:'м. Цветной бульвар, +7 963 754 16 20'},
+			{a:'Москва, Валовая ул., 26',
+			 b:' БЦ «Лайтхаус»',
+			 c:'м. Добрынинская, Павелецкая, +7 905 506 80 03'},
+			{a:'Москва, Садовая-Черногрязская ул., 13/3, стр. 1',
+			 b:'м. Красные ворота, Курская',
+			 c:'м. Красные ворота, Курская, +7 963 754 14 99'},
+			{a:'Москва, Рочдельская ул., 11/5',
+			 b:'Рочдельская ул., 11/5',
+			 c:'м. Краснопресненская, +7 905 565 52 05'},
+			{a:'Москва, Новый Арбат ул., 22',
+			 b:'м. Смоленская, Арбатская',
+			 c:'м. Смоленская, Арбатская, +7 905 565 62 70'},
+			{a:'Москва, Кутузовский пр., 36, стр. 10',
+			 b:'м. Кутузовская, Парк Победы',
+			 c:'м. Кутузовская, Парк Победы'},
+			{a:'Москва, Чистопрудный б-р, 1',
+			 b:'м. Чистые Пруды',
+			 c:'м. Чистые Пруды, +7 968 534 51 60'}
+		];
 
-            	 {a:'Киев, Крещатик ул., 15',
-            	 b:"«Пассаж»",
-            	 c:'м. Крещатик, Майдан Незалежности, +380 44 393 78 34'},
+		var image = 'img/icons/baloon.png';
 
-            	 {a:'Киев, Героев Сталинграда пр., 10',
-            	 b:"Гольф центр, ",
-            	 c:'м. Оболонь, +380 44 428 36 40'},
-
-            	 {a:'Киев, Саксаганского ул., 24',
-            	 b:"«Пассаж»",
-            	 c:'м. Республиканский стадион, +380 44 289 55 82'},
-
-            	 {a:'Киев, Шевченко б-р, 5-7',
-            	 b:"«Премьер Палас Отель»",
-            	 c:'м. Театральная, Льва Толстого, +380 44 244 13 60'},
-
-            	 {a:'Киев, Верхний вал ул., 22',
-            	 b:"Верхний вал ул., 22",
-            	 c:'м. Контрактовая площадь, +380 44 200 03 24'},
-
-            	 {a:'Киев, Льва Толстого ул., 1',
-            	 b:"Льва Толстого ул., 1",
-            	 c:'м. Площадь Льва Толстого, +380 44 235 95 31'},
-
-            	 {a:'Киев, Богдана Хмельницкого ул., 52а',
-            	 b:"Богдана Хмельницкого ул., 52а",
-            	 c:'м. Университет, Золотые ворота, +380 44 393 34 83'},
-
-            	 // Москва
-            	 {a:'Москва, Большая Садовая ул., 2/46, стр. 1',
-            	 b:"Большая Садовая ул., 2/46, стр. 1",
-            	 c:'м. Маяковская, +7 495 699 36 20'},
-
-            	 {a:'Москва, Маросейка ул., 4/2, стр. 1',
-            	 b:"м. Китай-город",
-            	 c:'м. Китай-город, +7 903 185 32 91'},
-
-            	 {a:'Москва, Большая Садовая ул., 2/46, стр. 1',
-            	 b:"Большая Садовая ул., 2/46, стр. 1",
-            	 c:'м. Маяковская, +7 495 699 36 20'},
-
-            	 {a:'Москва, Сретенка ул., 27, стр. 1',
-            	 b:"м. Сухаревская",
-            	 c:'м. Сухаревская, +7 495 607 19 80'},
-
-            	 {a:'Москва, Большая Якиманка ул., 19',
-            	 b:"м. Полянка",
-            	 c:'м. Полянка, +7 905 553 25 54'},
-
-            	 {a:'Москва, Цветной б-р, 15',
-            	 b:"ТЦ «Цветной» 5 этаж",
-            	 c:'м. Цветной бульвар, +7 963 754 16 20'},
-
-            	 {a:'Москва, Валовая ул., 26',
-            	 b:" БЦ «Лайтхаус»",
-            	 c:'м. Добрынинская, Павелецкая, +7 905 506 80 03'},
-
-            	 {a:'Москва, Садовая-Черногрязская ул., 13/3, стр. 1',
-            	 b:"м. Красные ворота, Курская",
-            	 c:'м. Красные ворота, Курская, +7 963 754 14 99'},
-
-            	 {a:'Москва, Рочдельская ул., 11/5',
-            	 b:"Рочдельская ул., 11/5",
-            	 c:'м. Краснопресненская, +7 905 565 52 05'},
-
-            	 {a:'Москва, Новый Арбат ул., 22',
-            	 b:"м. Смоленская, Арбатская",
-            	 c:'м. Смоленская, Арбатская, +7 905 565 62 70'},
-
-            	 {a:'Москва, Кутузовский пр., 36, стр. 10',
-            	 b:"м. Кутузовская, Парк Победы",
-            	 c:'м. Кутузовская, Парк Победы'},
-
-            	 {a:'Москва, Чистопрудный б-р, 1',
-            	 b:"м. Чистые Пруды",
-            	 c:'м. Чистые Пруды, +7 968 534 51 60'}
-
-            ];
-    console.log(arr.length);
-    i = 0;
-
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-
-    
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-    	i++;
-    	ymaps.geocode(arr[i].a, {results: 1}).then(function (res) {
-                var firstGeoObject = res.geoObjects.get(0),
-                coords = firstGeoObject.geometry.getCoordinates(),
-				myPlacemark = new ymaps.Placemark(coords, { 
-			        balloonContent: '<div class="ballon"><h3>'+arr[i].b+'</h3><p>'+arr[i].c+'</p></div>' 
-			        }, {
-			        iconLayout: 'default#image',
-			        iconImageHref: 'img/icons/baloon.png',
-			        iconImageSize: [68, 81],
-			        iconImageOffset: [-34, -80],
-			        balloonContentSize: [270, 99] 
-			        });
-				myMap.geoObjects.add(myPlacemark);
-
-            });
-   	// }
-}
+	  $.each(arr, function(i, val) {
+	    var baloon_content = '<div class="marker marker_title">'+val.b+'</div>'+
+	    										 '<div class="marker">'+val.c+'</div>';
+	    function Geocode(address) {
+	      geocoder.geocode({'address': address}, function(results, status) {
+	        if (status === google.maps.GeocoderStatus.OK) {
+	          var result = results[0].geometry.location;
+	          var marker = new google.maps.Marker({
+	              position: result,
+	              map: map,
+	              icon: image
+	          });
+	          var infowindow = new google.maps.InfoWindow({
+	            content: baloon_content
+	          });
+	          google.maps.event.addListener(marker, 'click', function() {
+	            infowindow.open(map,marker);
+	          });
+	        } else if (status === google.maps.GeocoderStatus.OVER_QUERY_LIMIT) {    
+	          setTimeout(function() {
+	            Geocode(address);
+	          }, 200);
+	        } else {
+	          alert("Geocode was not successful for the following reason:" + status);
+	        }
+	      });
+	    }
+	    Geocode(val.a);
+	  });
+	}
+	google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 <!-- begin map  -->
 <div class="map">
-	<div id="YMapsID" style="width:100%;height:645px"></div>
+	<div id="map" style="width: 100%; height: 700px"></div>
 </div>
 <!-- end map -->
+
 
 <!-- begin about  -->
 <div class="about"><div class="about__in">
